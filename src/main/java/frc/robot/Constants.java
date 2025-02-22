@@ -29,6 +29,7 @@ public class Constants {
     public class climber {
         public static int kMotorId = 5;
         public static boolean kInverted = false;
+        public static double kSpeed = 0.25;
     }
     public class algae {
         public class flipper {

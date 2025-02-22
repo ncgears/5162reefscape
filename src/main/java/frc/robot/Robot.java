@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.XboxController;
 public class Robot extends TimedRobot {
   private final Drivetrain m_drive;
   private final Algae m_algae;
+  private final Climber m_climber;
   private final XboxController dj = new XboxController(Constants.oi.kDriverId);
   private final XboxController oj = new XboxController(Constants.oi.kOperId);
 
@@ -22,6 +23,7 @@ public class Robot extends TimedRobot {
   public Robot() {
     m_drive = new Drivetrain();
     m_algae = new Algae();
+    m_climber = new Climber();
   }
 
   @Override
@@ -48,11 +50,27 @@ public class Robot extends TimedRobot {
       m_algae.stop();
     }
 
+    //Right Trigger put flipper forward
     if(dj.getRightTriggerAxis()>=0.5) {
       m_algae.flipperforward();
     } else if(dj.getRightTriggerAxis()<0.5) {
       m_algae.flipperbackward();
     }
+
+    //Left Bumper climbup
+    if(dj.getLeftBumperButtonPressed()) {
+      m_climber.climbup();
+    } else if (dj.getLeftBumperButtonReleased()) {
+      m_climber.stop();
+    }
+
+    //Right Bumper climbdown
+    if(dj.getRightBumperButtonPressed()) {
+      m_climber.climbdown();
+    } else if (dj.getRightBumperButtonReleased()) {
+      m_climber.stop();
+    }
+
   }
 
   @Override
