@@ -4,7 +4,7 @@ public class Constants {
     public class oi {
         public static int kDriverId = 0;
         public static int kOperId = 1;
-        public static double kDeadband = 0.05; //5% deadband for joysticks
+        public static double kDeadband = 0.1; //10% deadband for joysticks
     }
     public class drivetrain {
         public static double kMaxSpeed = 3.0; // 3 meters per second

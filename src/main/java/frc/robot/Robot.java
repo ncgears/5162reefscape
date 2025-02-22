@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
@@ -78,9 +79,9 @@ public class Robot extends TimedRobot {
   }
 
   private void driveWithJoystick(boolean fieldRelative) {
-    final var xSpeed = -m_xspeedLimiter.calculate(dj.getLeftY()) * Constants.drivetrain.kMaxSpeed;
-    final var ySpeed = -m_yspeedLimiter.calculate(dj.getLeftX()) * Constants.drivetrain.kMaxSpeed;
-    final var rot = -m_rotLimiter.calculate(dj.getRightX()) * Constants.drivetrain.kMaxAngularSpeed;
+    final var xSpeed = -m_xspeedLimiter.calculate(MathUtil.applyDeadband(dj.getLeftY(),Constants.oi.kDeadband)) * Constants.drivetrain.kMaxSpeed;
+    final var ySpeed = -m_yspeedLimiter.calculate(MathUtil.applyDeadband(dj.getLeftX(),Constants.oi.kDeadband)) * Constants.drivetrain.kMaxSpeed;
+    final var rot = -m_rotLimiter.calculate(MathUtil.applyDeadband(dj.getRightX(),Constants.oi.kDeadband)) * Constants.drivetrain.kMaxAngularSpeed;
     m_drive.drive(xSpeed, ySpeed, rot, fieldRelative, getPeriod());
   }
 }
