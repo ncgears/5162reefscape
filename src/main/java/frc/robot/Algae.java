@@ -1,5 +1,6 @@
 package frc.robot;
 
+import com.revrobotics.sim.SparkMaxSim;
 import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
@@ -7,6 +8,9 @@ import com.revrobotics.spark.SparkClosedLoopController;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
+
+import edu.wpi.first.math.system.plant.DCMotor;
+
 import com.revrobotics.spark.config.SparkMaxConfig;
 
 public class Algae {
@@ -69,5 +73,4 @@ public class Algae {
     private void flipperSetPosition(double position) {
         flipperController.setReference(position, ControlType.kPosition);
     }
-
 }
