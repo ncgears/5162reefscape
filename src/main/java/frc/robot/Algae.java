@@ -29,19 +29,24 @@ public class Algae {
         defaultConfig
             .smartCurrentLimit(50)
             .idleMode(IdleMode.kBrake);
+
+        //flipper
         flConfig.apply(defaultConfig)
             .inverted(Constants.algae.flipper.left.kInverted);
-        flipperLeft.configure(flConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
         frConfig.apply(defaultConfig)
             .follow(flipperLeft, Constants.algae.flipper.right.kInverted);
-        flipperRight.configure(frConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+
+        //intake
         itConfig.apply(defaultConfig)
             .smartCurrentLimit(20)
             .inverted(Constants.algae.intake.top.kInverted);
-        intakeTop.configure(itConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
         ibConfig.apply(defaultConfig)
             .smartCurrentLimit(20)
             .follow(intakeTop, Constants.algae.intake.bottom.kInverted);
+
+        flipperRight.configure(frConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        flipperLeft.configure(flConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        intakeTop.configure(itConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
         intakeBottom.configure(ibConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     }
 
