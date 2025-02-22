@@ -32,16 +32,21 @@ public class Constants {
     }
     public class algae {
         public class flipper {
-            public static double kPower = 0.5; //motor power for moving flipper
+            public static double kSpeed = 0.5; //motor power for moving flipper
+            public static double kForwardPosition = 0.25;
+            public static double kBackwardPosition = 0.0;
             public class left {
                 public static int kMotorId = 6;
+                public static boolean kInverted = true;
             }
             public class right {
                 public static int kMotorId = 10;
+                public static boolean kInverted = false;
             }
         }
         public class intake {
-            public static double kPower = 0.5; //motor power for running intake rollers
+            public static double kInSpeed = 0.5; //motor power for running intake rollers
+            public static double kOutSpeed = 0.5;
             public class bottom {
                 public static int kMotorId = 7;
                 public static boolean kInverted = false;

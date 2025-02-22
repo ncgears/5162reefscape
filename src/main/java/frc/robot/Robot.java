@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.XboxController;
 
 public class Robot extends TimedRobot {
   private final Drivetrain m_drive;
+  private final Algae m_algae;
   private final XboxController dj = new XboxController(Constants.oi.kDriverId);
   private final XboxController oj = new XboxController(Constants.oi.kOperId);
 
@@ -20,6 +21,7 @@ public class Robot extends TimedRobot {
   /** Called once at the beginning of the robot program. */
   public Robot() {
     m_drive = new Drivetrain();
+    m_algae = new Algae();
   }
 
   @Override
@@ -31,6 +33,30 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     driveWithJoystick(true);
+
+    //A button intake algae
+    if(dj.getAButtonPressed()) {
+      m_algae.intake();
+    } else if(dj.getAButtonReleased()) {
+      m_algae.stop();
+    }
+
+    //B button outtake algae
+    if(dj.getBButtonPressed()) {
+      m_algae.outtake();
+    } else if(dj.getBButtonReleased()) {
+      m_algae.stop();
+    }
+
+    if(dj.getRightTriggerAxis()>=0.5) {
+      m_algae.flipperforward();
+    } else if(dj.getRightTriggerAxis()<0.5) {
+      m_algae.flipperbackward();
+    }
+  }
+
+  @Override
+  public void simulationPeriodic() {
   }
 
   private void driveWithJoystick(boolean fieldRelative) {
